@@ -65,7 +65,7 @@ refs.breedSelector.addEventListener('change', async event => {
     refs.catInfo.insertAdjacentHTML(
       'afterbegin',
       `
-        <img class="cat-img" src="${catImageUrl}" alt="${catName}" width="400">
+        <img class="cat-img" src="${catImageUrl}" alt="${catName}" width="400px">
         <div class="text-wrapper">
         <h2 class="cat-name">${catName}</h2>
         <p class="cat-description">${catDescription}</p>
