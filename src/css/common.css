@@ -17,6 +17,10 @@ img {
   max-width: 100%;
 }
 
+.error {
+  display: none;
+}
+
 .cat-info {
   display: flex;
   flex-direction: row;
@@ -38,6 +42,8 @@ img {
   position: relative;
   background: #ddd;
   border-radius: 100px 100px 0 0;
+  color: transparent;
+  margin: 40px auto;
 }
 
 .loader:after {
