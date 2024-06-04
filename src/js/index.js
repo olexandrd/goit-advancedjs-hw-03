@@ -1,6 +1,8 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import Choices from 'choices.js';
 import 'choices.js/public/assets/styles/choices.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const refs = {
   loader: document.querySelector('.loader'),
@@ -37,8 +39,13 @@ const onFetchBreeds = async () => {
     });
     refs.breedSelector = document.querySelector('.choices');
   } else {
-    refs.error.style.display = 'block';
-    refs.error.textContent = 'Failed to load breeds';
+    // refs.error.style.display = 'block';
+    // refs.error.textContent = 'Failed to load breeds';
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load breeds',
+      position: 'topRight',
+    });
   }
 };
 
@@ -66,7 +73,12 @@ refs.breedSelector.addEventListener('change', async event => {
       `
     );
   } else {
-    refs.error.style.display = 'block';
-    refs.error.textContent = 'Failed to load breed';
+    // refs.error.style.display = 'block';
+    // refs.error.textContent = 'Failed to load breed';
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load cat info',
+      position: 'topRight',
+    });
   }
 });
