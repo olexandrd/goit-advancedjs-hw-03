@@ -39,8 +39,6 @@ const onFetchBreeds = async () => {
     });
     refs.breedSelector = document.querySelector('.choices');
   } else {
-    // refs.error.style.display = 'block';
-    // refs.error.textContent = 'Failed to load breeds';
     iziToast.error({
       title: 'Error',
       message: 'Failed to load breeds',
@@ -58,23 +56,27 @@ refs.breedSelector.addEventListener('change', async event => {
   const breedId = event.target.value;
   const cat = await fetchCatByBreed(breedId);
   refs.loader.style.display = 'none';
-  if (cat) {
+  if (cat && cat.length) {
     const catName = cat[0].breeds[0].name;
     const catDescription = cat[0].breeds[0].description;
     const catImageUrl = cat[0].url;
     refs.catInfo.insertAdjacentHTML(
       'afterbegin',
       `
-        <img class="cat-img" src="${catImageUrl}" alt="${catName}" width="400px">
+        <img class="cat-img" src="${catImageUrl}" alt="${catName}" width="400" height="320">
         <div class="text-wrapper">
         <h2 class="cat-name">${catName}</h2>
         <p class="cat-description">${catDescription}</p>
         </div>
       `
     );
+  } else if (cat && !cat.length) {
+    iziToast.warning({
+      title: 'Warning',
+      message: `There is no info for ${event.target.textContent}`,
+      position: 'topRight',
+    });
   } else {
-    // refs.error.style.display = 'block';
-    // refs.error.textContent = 'Failed to load breed';
     iziToast.error({
       title: 'Error',
       message: 'Failed to load cat info',
